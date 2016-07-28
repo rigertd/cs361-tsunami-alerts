@@ -30,12 +30,16 @@
                 </div><!-- /.container-fluid -->
             </nav>
         </div>
+        <button id="changeGAlert">Change to Green Alert</button>
+        <button id="changeYAlert">Change to Yellow Alert</button>
+        <button id="changeOAlert">Change to Orange Alert</button>
+        <button id="changeRAlert">Change to Red Alert</button>
+        <button id="changeBAlert">Change to Black Alert</button>
+
+
         <div id="currentAlertGreen">
             <h1>NO ACTIVE ALERTS</h1>
-        </div>
-
-        <div id="latestAlertsGreen">
-            <p>LATEST ALERTS</p>
+            <H1>LATEST ALERTS</H1>
             <ol>
                 <li>Ipsum [date/time]</li>
                 <li>Lorem [date/time]</li>
@@ -50,10 +54,7 @@
                 <li>Lorem [date/time]</li>
                 <li>Est [date/time]</li>
             </ol>
-        </div>
-
-        <div id="latestAlertsYellow">
-            <p>LATEST ALERTS:</p>
+            <h1>LATEST ALERTS:</h1>
             <ol>
                 <li>Ipsum [date/time]</li>
                 <li>Lorem [date/time]</li>
@@ -68,39 +69,27 @@
                 <li>Lorem [date/time]</li>
                 <li>Est [date/time]</li>
             </ol>
+            <h1>TSUNAMI ALERT ISSUED NEAR YOUR LOCATION</h1>
+            <h1>EVACUATION CURRENTLY NOT NEEDED</h1>
+            <h1>PLEASE KEEP YOUR PHONE ON AS THIS MAY CHANGE WITHOUT WARNING</h1>
+            
         </div>
 
-        <div id="latestAlertsOrange">
-            <p>TSUNAMI ALERT ISSUED NEAR YOUR LOCATION EVACUATION CURRENTLY NOT NEEDED
-               PLEASE KEEP YOUR PHONE ON AS THIS MAY CHANGE WITHOUT WARNING
-            </p>
-        </div>
-
-        <div id="currentAlertsRed">
+        <div id="currentAlertRed">
             <h1>**ALERT**</h1>
-            <p>
-                TSUNAMI ALERT
-                ISSUED FOR YOUR
-                LOCATION
-
-                EVACUATE IMMEDIATELY. SEE RECOMMENDED EVAC ROUTE.
-
-                PLEASE REMAIN CALM
-            </p>
+            <h1>TSUNAMI ALERT ISSUED FOR YOUR LOCATION.</h1>
+            <h1>EVACUATE IMMEDIATELY. SEE RECOMMENDED EVAC ROUTE.</h1>
+            <h1>PLEASE REMAIN CALM.</h1>
         </div>
 
-        <div id="latestAlertsRed">
-            <h1>**BLACK**</h1>
-            <p>
-                YOU ARE IN A TSUNAMI.
-
-                PLEASE REMAIN CALM AND SEEK HIGH GROUND.
-
-                HELP IS ON THE WAY.
-            </p>
+        <div id="currentAlertBlack">
+            <h1>**ALERT**</h1>
+            <h1>YOU ARE IN A TSUNAMI.</h1>
+            <h1>PLEASE REMAIN CALM AND SEEK HIGH GROUND.</h1>
+            <h1>HELP IS ON THE WAY.</h1>
         </div>
 
-        <div class="map">
+        <div id="map">
             <img src="earth-map.png" />
         </div>
     </body>
