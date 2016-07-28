@@ -1,0 +1,56 @@
+﻿body {
+    background-color: #BDDE8D;
+}
+
+#logo {
+    margin-top: -3px;
+}
+
+#page-title {
+    font-size: 30px;
+}
+
+.alignStuff {
+    text-align: center;
+}
+
+.navbar-default {
+    background-color: #6CCFFF;
+    border-color: #6CCFFF;
+}
+
+.currentAlert h1 {
+    text-align: center;
+    font-weight: bold;
+}
+
+.latestAlerts {
+    text-align: left;
+    padding: 5px;
+    font-size: 2em;
+}
+
+.map {
+    display: block;
+    margin: auto;
+    width: 40%;
+    
+}
+
+#menu_btn {
+    margin-top: 8px;
+}
+
+#menu_items {
+    float: right;
+}
+
+#currentAlertYellow, #latestAlertsYellow, #currentAlertOrange, #latestAlertsOrange, #currentAlertsRed, #latestAlertsRed {
+    display: none;
+}
+
+
+
+
+
+

@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html>
+    <head>
+        <title>Tsu-Shield</title>
+    	<meta charset="utf-8" />
+        <script src="Scripts/jquery-1.9.1.min.js"></script>
+        <script src="Scripts/bootstrap.min.js"></script>
+        <link rel="stylesheet" href="font-awesome/css/font-awesome.min.css">
+        <link href="Content/bootstrap.min.css" rel="stylesheet" />
+        <link href="home.css" type="text/css" rel="stylesheet" />
+        <script src="home.js"></script>
+    </head>
+    <body>
+        <div class="navBar">
+            <nav class="navbar navbar-default" role="navigation">
+                <div class="container-fluid">
+                    <!-- Brand and toggle get grouped for better mobile display -->
+                    <div class="navbar-header">
+                        <div id="logo"><a class="navbar-brand"><span id="page-title"><i class="fa fa-shield" aria-hidden="true"></i>
+                            TSU-SHIELD <i class="fa fa-shield" aria-hidden="true"></i></span></a></div>
+                    </div>
+                    <div id="menu_items" class="dropdown">
+                        <button id="menu_btn" class="btn btn-primary dropdown-toggle" type="button" data-toggle="dropdown">
+                        <i class="fa fa-bars" aria-hidden="true"></i></button>
+                        <ul class="pull-right dropdown-menu">
+                          <li><a href="settings.html">Settings</a></li>
+                          <li><a href="Archives.html">Archives</a></li>
+                        </ul>
+                    </div>
+                </div><!-- /.container-fluid -->
+            </nav>
+        </div>
+        <div id="currentAlertGreen">
+            <h1>NO ACTIVE ALERTS</h1>
+        </div>
+
+        <div id="latestAlertsGreen">
+            <p>LATEST ALERTS</p>
+            <ol>
+                <li>Ipsum [date/time]</li>
+                <li>Lorem [date/time]</li>
+                <li>Est [date/time]</li>
+            </ol>
+        </div>
+
+        <div id="currentAlertYellow">
+            <h1>ACTIVE ALERTS IN:</h1>
+            <ol>
+                <li>Ipsum [date/time]</li>
+                <li>Lorem [date/time]</li>
+                <li>Est [date/time]</li>
+            </ol>
+        </div>
+
+        <div id="latestAlertsYellow">
+            <p>LATEST ALERTS:</p>
+            <ol>
+                <li>Ipsum [date/time]</li>
+                <li>Lorem [date/time]</li>
+                <li>Est [date/time]</li>
+            </ol>
+        </div>
+
+        <div id="currentAlertOrange">
+            <h1>**ALERT**</h1>
+            <ol>
+                <li>Ipsum [date/time]</li>
+                <li>Lorem [date/time]</li>
+                <li>Est [date/time]</li>
+            </ol>
+        </div>
+
+        <div id="latestAlertsOrange">
+            <p>TSUNAMI ALERT ISSUED NEAR YOUR LOCATION EVACUATION CURRENTLY NOT NEEDED
+               PLEASE KEEP YOUR PHONE ON AS THIS MAY CHANGE WITHOUT WARNING
+            </p>
+        </div>
+
+        <div id="currentAlertsRed">
+            <h1>**ALERT**</h1>
+            <p>
+                TSUNAMI ALERT
+                ISSUED FOR YOUR
+                LOCATION
+
+                EVACUATE IMMEDIATELY. SEE RECOMMENDED EVAC ROUTE.
+
+                PLEASE REMAIN CALM
+            </p>
+        </div>
+
+        <div id="latestAlertsRed">
+            <h1>**BLACK**</h1>
+            <p>
+                YOU ARE IN A TSUNAMI.
+
+                PLEASE REMAIN CALM AND SEEK HIGH GROUND.
+
+                HELP IS ON THE WAY.
+            </p>
+        </div>
+
+        <div class="map">
+            <img src="earth-map.png" />
+        </div>
+    </body>
+</html>
