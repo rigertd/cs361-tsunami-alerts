@@ -1,13 +1,12 @@
 <?xml version="1.0" encoding="UTF-8" standalone="no"?><alert xmlns="urn:oasis:names:tc:emergency:cap:1.2">
-  <identifier>PAAQ-3-mcl1uw</identifier>
+  <identifier>PAAQ-1-mcl1uw</identifier>
   <sender>wcatwc@noaa.gov</sender>
-  <sent>2012-10-28T04:10:28-00:00</sent>
-  <status>Actual</status>
-  <msgType>Update</msgType>
+  <sent>2012-10-28T03:07:27-00:00</sent>
+  <status>Exercise</status>
+  <msgType>Alert</msgType>
   <source>WCATWC</source>
   <scope>Public</scope>
   <code>profile:CAP-TSU:1.0</code>
-  <references>wcatwc@noaa.gov,PAAQ-1-mcl1uw,2012-10-28T03:07:27-00:00 wcatwc@noaa.gov,PAAQ-2-mcl1uw,2012-10-28T03:34:51-00:00</references>
   <incidents>mcl1uw</incidents>
   <info>
     <category>Geo</category>
@@ -20,28 +19,28 @@
       <valueName>TsunamiSystemCategory</valueName>
       <value>Warning</value>
     </eventCode>
-    <onset>2012-10-28T04:10:28-00:00</onset>
-    <expires>2012-10-28T06:10:28-00:00</expires>
+    <onset>2012-10-28T03:07:27-00:00</onset>
+    <expires>2012-10-28T05:07:27-00:00</expires>
     <senderName>NWS West Coast/Alaska Tsunami Warning Center Palmer AK</senderName>
-    <headline>The tsunami Warning continues in effect for the coastal areas of British Columbia and Alaska from the north tip of Vancouver Island, British Columbia to Cape Decision, Alaska (85 miles SE of Sitka).</headline>
-    <description>The tsunami Warning continues in effect for the coastal areas of British Columbia and Alaska from the north tip of Vancouver Island, British Columbia to Cape Decision, Alaska (85 miles SE of Sitka). - Event details: Preliminary magnitude 7.7 (Mw) earthquake / Lat: 52.900, Lon: -131.900 at 2012-10-28T03:04:10Z Tsunami warnings mean that a tsunami with significant widespread inundation is expected, or occurring.  Warnings indicate that widespread dangerous coastal flooding accompanied by powerful currents is possible and may continue for several hours after the initial wave arrival. </description>
+    <headline>A tsunami Warning is now in effect which includes the coastal areas of British Columbia and Alaska from the north tip of Vancouver Island, British Columbia to Cape Decision, Alaska (85 miles SE of Sitka).</headline>
+    <description>A tsunami Warning is now in effect which includes the coastal areas of British Columbia and Alaska from the north tip of Vancouver Island, British Columbia to Cape Decision, Alaska (85 miles SE of Sitka). - Event details: Preliminary magnitude 7.1 (Mwp) earthquake / Lat: 52.863, Lon: -131.942 at 2012-10-28T03:04:11Z Tsunami warnings mean that a tsunami with significant widespread inundation is expected, or occurring.  Warnings indicate that widespread dangerous coastal flooding accompanied by powerful currents is possible and may continue for several hours after the initial wave arrival. </description>
     <instruction>Recommended Actions: People in low-lying coastal areas should be alert to instructions from their local emergency officials. If in a tsunami warning coastal area, move inland to higher ground. Next update and additional information:   This message will be updated in 30 minutes or sooner if the situation warrants.   The tsunami message will remain in effect until further notice.   Refer to the internet site wcatwc.arh.noaa.gov for more information.</instruction>
-    <web>http://wcatwc.arh.noaa.gov/tsuPortal/events/PAAQ/2012/10/28/mcl1uw/3/WEPA41/WEPA41.txt</web>
+    <web>http://wcatwc.arh.noaa.gov/tsuPortal/events/PAAQ/2012/10/28/mcl1uw/1/WEPA41/WEPA41.txt</web>
     <parameter>
       <valueName>EventLocationName</valueName>
       <value>25 miles S of Sandspit, British Columbia</value>
     </parameter>
     <parameter>
       <valueName>EventPreliminaryMagnitude</valueName>
-      <value>7.7</value>
+      <value>7.1</value>
     </parameter>
     <parameter>
       <valueName>EventPreliminaryMagnitudeType</valueName>
-      <value>Mw</value>
+      <value>Mwp</value>
     </parameter>
     <parameter>
       <valueName>EventOriginTime</valueName>
-      <value>2012-10-28T03:04:10-00:00</value>
+      <value>2012-10-28T03:04:11-00:00</value>
     </parameter>
     <parameter>
       <valueName>EventDepth</valueName>
@@ -49,15 +48,15 @@
     </parameter>
     <parameter>
       <valueName>EventLatLon</valueName>
-      <value>52.900,-131.900 0.000</value>
+      <value>52.863,-131.942 0.000</value>
     </parameter>
     <parameter>
       <valueName>VTEC</valueName>
-      <value>/O.CON.PAAQ.TS.W.0024.000000T0000Z-000000T0000Z/</value>
+      <value>/O.NEW.PAAQ.TS.W.0024.121028T0307Z-000000T0000Z/</value>
     </parameter>
     <parameter>
       <valueName>NWSUGC</valueName>
-      <value>BCZ220-210-922-912-921-911-110-AKZ026&gt;029-280510-</value>
+      <value>BCZ220-210-922-912-921-911-110-AKZ026&gt;029-280407-</value>
     </parameter>
     <parameter>
       <valueName>ProductDefinition</valueName>
@@ -178,21 +177,21 @@
     <resource>
       <resourceDesc>Energy Map</resourceDesc>
       <mimeType>image/jpeg</mimeType>
-      <uri>http://wcatwc.arh.noaa.gov/tsuPortal/events/PAAQ/2012/10/28/mcl1uw/3/WEPA41/energymcl1uw.jpg</uri>
+      <uri>http://wcatwc.arh.noaa.gov/tsuPortal/events/PAAQ/2012/10/28/mcl1uw/1/WEPA41/energymcl1uw.jpg</uri>
     </resource>
     <resource>
       <resourceDesc>Tsunami Travel Time Map</resourceDesc>
       <mimeType>image/jpeg</mimeType>
-      <uri>http://wcatwc.arh.noaa.gov/tsuPortal/events/PAAQ/2012/10/28/mcl1uw/3/WEPA41/ttvumcl1uw-03.jpg</uri>
+      <uri>http://wcatwc.arh.noaa.gov/tsuPortal/events/PAAQ/2012/10/28/mcl1uw/1/WEPA41/ttvumcl1uw-01.jpg</uri>
     </resource>
     <resource>
       <resourceDesc>Event Data as a JSON document</resourceDesc>
       <mimeType>application/json</mimeType>
-      <uri>http://wcatwc.arh.noaa.gov/tsuPortal/events/PAAQ/2012/10/28/mcl1uw/3/WEPA41/PAAQ.json</uri>
+      <uri>http://wcatwc.arh.noaa.gov/tsuPortal/events/PAAQ/2012/10/28/mcl1uw/1/WEPA41/PAAQ.json</uri>
     </resource>
     <area>
       <areaDesc>Coastal areas between and including the north tip of Vancouver Island, British Columbia to Cape Decision, Alaska (85 miles SE of Sitka)</areaDesc>
-      <circle>52.9,-131.9 0.0</circle>
+      <circle>52.863,-131.942 0.0</circle>
       <geocode>
         <valueName>UGC</valueName>
         <value>BCZ220</value>
@@ -447,7 +446,7 @@
       </geocode>
     </area>
   </info>
-<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>RxYbcDam0dO48NHkmt8AnvNoFZw=</DigestValue></Reference></SignedInfo><SignatureValue>NZGMZrjMymgG5k/7ZTQc3HPlZQKUpZvwk6mHO/xT9T+mR3gjCHGg1g==</SignatureValue><KeyInfo><KeyValue><DSAKeyValue><P>/X9TgR11EilS30qcLuzk5/YRt1I870QAwx4/gLZRJmlFXUAiUftZPY1Y+r/F9bow9subVWzXgTuA
+<Signature xmlns="http://www.w3.org/2000/09/xmldsig#"><SignedInfo><CanonicalizationMethod Algorithm="http://www.w3.org/TR/2001/REC-xml-c14n-20010315#WithComments"/><SignatureMethod Algorithm="http://www.w3.org/2000/09/xmldsig#dsa-sha1"/><Reference URI=""><Transforms><Transform Algorithm="http://www.w3.org/2000/09/xmldsig#enveloped-signature"/></Transforms><DigestMethod Algorithm="http://www.w3.org/2000/09/xmldsig#sha1"/><DigestValue>B9InnMbftIbOmo/HUYrQ9YVDua8=</DigestValue></Reference></SignedInfo><SignatureValue>h8Nolw63TkWtcHtDqxQK6S6ZwiQU+O6FGhhsJzGlX4hTuId4tMWH3A==</SignatureValue><KeyInfo><KeyValue><DSAKeyValue><P>/X9TgR11EilS30qcLuzk5/YRt1I870QAwx4/gLZRJmlFXUAiUftZPY1Y+r/F9bow9subVWzXgTuA
 HTRv8mZgt2uZUKWkn5/oBHsQIsJPu6nX/rfGG/g7V+fGqKYVDwT7g/bTxR7DAjVUE1oWkTL2dfOu
 K2HXKu/yIgMZndFIAcc=</P><Q>l2BQjxUjC8yykrmCouuEC/BYHPU=</Q><G>9+GghdabPd7LvKtcNrhXuXmUr7v6OuqC+VdMCz0HgmdRWVeOutRZT+ZxBxCBgLRJFnEj6EwoFhO3
 zwkyjMim4TwWeotUfI0o4KOuHiuzpnWRbqN/C/ohNWLx+2J6ASQ7zKTxvqhRkImog9/hWuWfBpKL
