@@ -1,0 +1,69 @@
+﻿body {
+    background-color: #BDDE8D;
+}
+
+#logo {
+    margin: auto;
+    padding-left: 300px;
+}
+
+#page-title {
+    font-size: 50px;
+    color: #000000;
+    text-align: center;
+    font-weight: bold;
+}
+
+.navbar-default {
+    background-color: #6CCFFF;
+    border-color: #6CCFFF;
+    color: #fff;
+}
+
+button {
+     font-size: 20px;
+}
+
+h1 {
+    text-align: center;
+    font-weight: bold;
+}
+
+p, ol {
+    text-align: center;
+    font-size: 30px;
+    list-style: none;
+    font-weight: bold;
+}
+
+#map {
+    display: block;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+#menu_btn {
+    margin-top: 8px;
+    height: 30px;
+    width: 50px;
+}
+
+#menu_items {
+    float: right;
+    
+}
+
+#currentAlertRed {
+   color: #fff;
+}
+
+#currentAlertBlack {
+    color: #fff;
+}
+
+
+
+
+
+
