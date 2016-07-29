@@ -1,2 +1,3 @@
 geopy
 python-dateutil
+nose
