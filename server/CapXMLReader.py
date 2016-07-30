@@ -62,6 +62,7 @@ class CapXMLReader:
         """
         Gets the parsed CapXML data held by the object
         """
+        return self.data
 
     def reset(self):
         """
