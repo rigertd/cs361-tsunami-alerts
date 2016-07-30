@@ -7,6 +7,10 @@
     padding-left: 300px;
 }
 
+#header {
+    padding-bottom: 20px;
+}
+
 #page-title {
     font-size: 50px;
     color: #000000;
@@ -18,6 +22,13 @@
     background-color: #6CCFFF;
     border-color: #6CCFFF;
     color: #fff;
+
+    width: 100%; 
+    display: inline-block; 
+    text-align: center; 
+    padding: 0; 
+    list-style: none; 
+    margin-left: 0px;
 }
 
 button {
