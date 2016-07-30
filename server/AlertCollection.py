@@ -16,9 +16,10 @@ class AlertCollection:
 	alerts -- list of Alert objects
 	"""
 	def __init__(self):
-		self.alerts = []
+		self.alerts = {}
 
 	def add_alert(self, alert):
-		self.alerts.append(alert)
+		self.alerts[alert.id] = alert
 
 	def remove_alert(self, alert):
+        del self.alerts[alert.id]

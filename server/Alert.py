@@ -19,10 +19,11 @@ class Alert:
 	locations -- list of dictionary objects containing
 				 latitude and longitude
 	"""
-	def __init__(self, onsetDate, expireDate=None):
-		self.onsetDate = parse(onsetDate)
-		self.expireDate = parse(expireDate)
+	def __init__(self, config):
+		self.onsetDate = config['onsetDate']
+		self.expireDate = config['expireDate']
 		self.locations = []
+        self.id = id
 
 	def add_location(self, latitude, longitude):
 		location = { "latitude": latitude, "longitude": longitude }
