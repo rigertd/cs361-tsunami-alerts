@@ -6,7 +6,7 @@ Group: Tsunami Alerts
 This module contains class definitions for AlertCollection
 class to track collections of alerts.
 """
-import Alert
+from Alert import Alert
 
 class AlertCollection:
     """
