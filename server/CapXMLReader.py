@@ -41,12 +41,12 @@ class CapXMLReader:
 
     def add_by_address(self, address):
         """
-        Adds a location to the list of affected areas based on an address.
+        Adds a location to the list of affected locations based on an address.
         Does not add the location if the address is invalid.
         """
         location = self.locator.geocode(address)
         if location:
-            self.data['areas'].append((location.latitude, location.longitude))
+            self.data['locations'].append((location.latitude, location.longitude))
             return True
         else:
             return False
@@ -59,6 +59,7 @@ class CapXMLReader:
                       'onsetDate': None,
                       'expireDate': None,
                       'isUpdate': False,
+                      'isCancel': False,
                       'locations':[] 
                     }
 
@@ -115,6 +116,16 @@ class CapXMLReader:
             reset()
             return False
         
+        eventCode = info.find('eventCode')
+        if eventCode is not None:
+            val = eventCode.find('value')
+            if val is not None:
+                self.data['isCancel'] = val.text == 'Cancellation'
+        else:
+            print "Event code not found"
+            self.data['isCancel'] = False
+                
+        
         onsetDate = info.find('onset')
         if onsetDate is None:
             print "Onset date not found"
@@ -156,7 +167,10 @@ class CapXMLReader:
         """
         Gets the parsed CapXML data held by the object
         """
-        return self.data
+        if self.data['id'] is not None:
+            return self.data
+        else:
+            return None
 
     def reset(self):
         """
