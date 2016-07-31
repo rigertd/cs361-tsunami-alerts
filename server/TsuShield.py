@@ -15,20 +15,18 @@ from CapXMLReader import CapXMLReader
 from Alert import Alert
 from AlertCollection import AlertCollection
 import time
-from multiprocessing import Process, Lock
+from threading import Thread
 import webapp2
 from paste import httpserver
 import json
 
-mutex = Lock()
 alerts = AlertCollection()
-
 
 class AlertServerApplication(webapp2.RequestHandler):
     def get(self):
+        global alerts
         latitude = self.request.get('latitude')
         longitude = self.request.get('longitude')
-        print(latitude + " " + longitude)
 
         try:
             latitude = float(latitude)
@@ -37,19 +35,15 @@ class AlertServerApplication(webapp2.RequestHandler):
             self.response.write("Invalid coordinates. Cannot complete request.")
             return
 
-        for alertID, alert in alerts.alerts:
-            print(alertID)
-
         alertsInRange = alerts.get_alerts_in_range((latitude, longitude), 10.0)
         if len(alertsInRange) == 0:
             jsonResponse = { 'activeAlert': False, 'distance': None }
             self.response.write(json.dumps(jsonResponse))
-            print(str(latitude) + " " + str(longitude))
             return
 
         minDist = 100
         for alert in alertsInRange:
-            newDist = alert.distance()
+            newDist = alert.distance((latitude, longitude))
             if newDist < minDist:
                 minDist = newDist
 
@@ -58,15 +52,18 @@ class AlertServerApplication(webapp2.RequestHandler):
 
 app = webapp2.WSGIApplication([('/', AlertServerApplication),], debug=True)
 
+
 def main():
     reader = CapXMLReader()
-    polling_process = Process(target=download_alert_data, args=(reader, alerts,))
-    polling_process.start()
+    thread = Thread(target=download_alert_data, args=(reader,))
+    thread.daemon = True
+    thread.start()
 
     httpserver.serve(app, host='158.69.197.74', port='8080')    
     
 
-def download_alert_data(reader, container):
+def download_alert_data(reader):
+    global alerts
     while True:
         #response = urllib2.urlopen('http://wcatwc.arh.noaa.gov/events/xml/PAAQCAP.xml')
         #alert = response.read()
@@ -76,9 +73,9 @@ def download_alert_data(reader, container):
         if reader.parse(alert):
             print "getting alert data"
             alertConfig = reader.get_alert_data()
-            with mutex:
-                print "adding data to container"
-                container.add_alert_by_config(alertConfig)
+            #with mutex:
+            print "adding data to container"
+            alerts.add_alert_by_config(alertConfig)
 
         time.sleep(300)
 

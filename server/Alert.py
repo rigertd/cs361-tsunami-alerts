@@ -107,9 +107,9 @@ class Alert:
         for location in self.locations:
             if great_circle(location, pointLocation).miles <= mileRange:
                 print(great_circle(location, pointLocation).miles)
-                return true
+                return True
         print(great_circle(location, pointLocation).miles)
-        return false
+        return False
 
     def distance(self, pointLocation):
         """
