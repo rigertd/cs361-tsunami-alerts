@@ -159,6 +159,8 @@ class CapXMLReader:
                 pass
             lat, long = self.convert_circle(circle.text)
             self.add_by_lat_long(lat, long)
+            
+        return True
 
     def convert_circle(self, text):
         return tuple(text.split(' ')[0].split(','))
