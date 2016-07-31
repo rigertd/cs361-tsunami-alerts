@@ -100,20 +100,20 @@ class CapXMLReader:
         msgType = root.find('msgType')
         if msgType is None:
             print "Message type not found"
-            reset()
+            self.reset()
             return False
         self.data['isUpdate'] = msgType.text == 'Update'
         
         info = root.find('info')
         if info is None:
             print "Message info not found"
-            reset()
+            self.reset()
             return False
         
         event = info.find('event')
         if event is None or event.text != 'Tsunami':
             print "Event type not found or not Tsunami"
-            reset()
+            self.reset()
             return False
         
         eventCode = info.find('eventCode')
@@ -129,27 +129,27 @@ class CapXMLReader:
         onsetDate = info.find('onset')
         if onsetDate is None:
             print "Onset date not found"
-            reset()
+            self.reset()
             return False
         try:
             date = parser.parse(onsetDate.text)
             self.data['onsetDate'] = date
         except ValueError:
             print "Invalid onset date"
-            reset()
+            self.reset()
             return False
         
         expireDate = info.find('expires')
         if expireDate is None:
             print "Expire date not found"
-            reset()
+            self.reset()
             return False
         try:
             date = parser.parse(expireDate.text)
             self.data['expireDate'] = date
         except ValueError:
             print "Invalid expire date"
-            reset()
+            self.reset()
             return False
             
         for area in info.iterfind('area'):
