@@ -22,9 +22,6 @@ from paste import httpserver
 mutex = Lock()
 alerts = AlertCollection()
 
-app = webapp2.WSGIApplication([
-        ('/', AlertServerApplication),
-    ], debug=True)
 
 class AlertServerApplication(webapp2.RequestHandler):
     def get(self):
@@ -32,13 +29,14 @@ class AlertServerApplication(webapp2.RequestHandler):
         longitude = self.request.get('longitude')
         self.response.write("Hello! I am a server!")
 
+app = webapp2.WSGIApplication([('/', AlertServerApplication),], debug=True)
 
 def main():
     reader = CapXMLReader()
     polling_process = Process(target=download_alert_data, args=(reader, alerts,))
     polling_process.start()
 
-    httpserver.serve(app, host='127.0.0.1', port='8080')    
+    httpserver.serve(app, host='158.69.197.74', port='8080')    
     
 
 def download_alert_data(reader, container):
