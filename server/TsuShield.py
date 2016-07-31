@@ -41,7 +41,7 @@ class AlertServerApplication(webapp2.RequestHandler):
         if len(alertsInRange) == 0:
             jsonResponse = { 'activeAlert': False, 'distance': None }
             self.response.write(json.dumps(jsonResponse))
-            print(latitude + " " + longitude)
+            print(str(latitude) + " " + str(longitude))
             return
 
         minDist = 100
