@@ -28,6 +28,7 @@ class AlertServerApplication(webapp2.RequestHandler):
     def get(self):
         latitude = self.request.get('latitude')
         longitude = self.request.get('longitude')
+        print(latitude + " " + longitude)
 
         try:
             latitude = float(latitude)
@@ -40,6 +41,7 @@ class AlertServerApplication(webapp2.RequestHandler):
         if len(alertsInRange) == 0:
             jsonResponse = { 'activeAlert': False, 'distance': None }
             self.response.write(json.dumps(jsonResponse))
+            print(latitude + " " + longitude)
             return
 
         minDist = 100
