@@ -29,6 +29,13 @@ class AlertServerApplication(webapp2.RequestHandler):
         latitude = self.request.get('latitude')
         longitude = self.request.get('longitude')
 
+        try:
+            latitude = float(latitude)
+            longitude = float(longitude)
+        except ValueError:
+            self.response.write("Invalid coordinates. Cannot complete request.")
+            return
+
         alertsInRange = alerts.get_alerts_in_range((latitude, longitude), 10.0)
         if len(alertsInRange) == 0:
             jsonResponse = { 'activeAlert': False, 'distance': None }
