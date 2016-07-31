@@ -14,17 +14,23 @@ import urllib2
 from CapXMLReader import CapXMLReader
 from Alert import Alert
 from AlertCollection import AlertCollection
+import time
 
 def main():
     alerts = AlertCollection()
     reader = CapXMLReader()
     
-    #print great_circle((0.0,0.0),(0.14,0.0)).miles
-    response = urllib2.urlopen('http://wcatwc.arh.noaa.gov/events/xml/PAAQCAP.xml')
-    alert = response.read()
-    reader.parse(alert)
+    while True:
+        response = urllib2.urlopen('http://wcatwc.arh.noaa.gov/events/xml/PAAQCAP.xml')
+        alert = response.read()
 
+        if reader.parse(alert):
+            alertConfig = reader.get_alert_data()
+            alerts.add_alert_by_config(alertConfig)
 
+        
+
+        time.sleep(300)
 
 if __name__ == '__main__':
     main()
