@@ -18,6 +18,7 @@ import time
 from multiprocessing import Process, Lock
 import webapp2
 from paste import httpserver
+import json
 
 mutex = Lock()
 alerts = AlertCollection()
@@ -27,7 +28,21 @@ class AlertServerApplication(webapp2.RequestHandler):
     def get(self):
         latitude = self.request.get('latitude')
         longitude = self.request.get('longitude')
-        self.response.write("Hello! I am a server!")
+
+        alertsInRange = alerts.get_alerts_in_range((latitude, longitude), 10.0)
+        if len(alertsInRange) == 0:
+            jsonResponse = { 'activeAlert': False, 'distance': None }
+            self.response.write(json.dumps(jsonResponse))
+            return
+
+        minDist = 100
+        for alert in alertsInRange:
+            newDist = alert.distance()
+            if newDist < minDist:
+                minDist = newDist
+
+        jsonResponse = { 'activeAlert': True, 'distance': minDist }
+        self.response.write(json.dumps(jsonResponse))
 
 app = webapp2.WSGIApplication([('/', AlertServerApplication),], debug=True)
 
