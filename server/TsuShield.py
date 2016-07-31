@@ -16,20 +16,30 @@ from Alert import Alert
 from AlertCollection import AlertCollection
 import time
 from multiprocessing import Process, Lock
-
+import webapp2
+from paste import httpserver
 
 mutex = Lock()
+alerts = AlertCollection()
+
+app = webapp2.WSGIApplication([
+        ('/', AlertServerApplication),
+    ], debug=True)
+
+class AlertServerApplication(webapp2.RequestHandler):
+    def get(self):
+        latitude = self.request.get('latitude')
+        longitude = self.request.get('longitude')
+        self.response.write("Hello! I am a server!")
+
 
 def main():
-    alerts = AlertCollection()
     reader = CapXMLReader()
-    
     polling_process = Process(target=download_alert_data, args=(reader, alerts,))
     polling_process.start()
+
+    httpserver.serve(app, host='127.0.0.1', port='8080')    
     
-    while True:
-        pass
-        time.sleep(300)
 
 def download_alert_data(reader, container):
     while True:
