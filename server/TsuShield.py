@@ -37,6 +37,9 @@ class AlertServerApplication(webapp2.RequestHandler):
             self.response.write("Invalid coordinates. Cannot complete request.")
             return
 
+        for alertID, alert in alerts.alerts:
+            print(alertID)
+
         alertsInRange = alerts.get_alerts_in_range((latitude, longitude), 10.0)
         if len(alertsInRange) == 0:
             jsonResponse = { 'activeAlert': False, 'distance': None }

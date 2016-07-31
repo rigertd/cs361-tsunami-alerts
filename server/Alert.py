@@ -106,7 +106,18 @@ class Alert:
         """
         for location in self.locations:
             if great_circle(location, pointLocation).miles <= mileRange:
+                print(great_circle(location, pointLocation).miles)
                 return true
+        print(great_circle(location, pointLocation).miles)
         return false
 
-
+    def distance(self, pointLocation):
+        """
+        Returns distance to closest location
+        """
+        distance = 100
+        for location in self.locations:
+            newDistance = great_circle(location, pointLocation).miles
+            if newDistance < distance:
+                distance = newDistance
+        return distance

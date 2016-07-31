@@ -45,8 +45,10 @@ class AlertCollection:
         that are within the passed-in mileRange of the
         passed-in location.
         """
-        alertsInRange = {}
+        alertsInRange = []
         for alertID, alert in self.alerts:
             if alert.is_in_range(location, mileRange):
-                alertsInRange[alert.get_id()] = alert
+                alertsInRange.append(alert)
         return alertsInRange
+
+
