@@ -18,8 +18,35 @@ class AlertCollection:
 	def __init__(self):
 		self.alerts = {}
 
-	def add_alert(self, alert):
+	def add_alert_by_object(self, alert):
+		"""
+		Adds passed-in alert object to AlertCollection.
+		"""
 		self.alerts[alert.id] = alert
 
-	def remove_alert(self, alert):
-        del self.alerts[alert.id]
+	def add_alert_by_config(self, config):
+		"""
+		Creates an Alert from passed-in config and adds
+		it to AlertCollection.
+		"""
+		alert = Alert(config)
+		self.add_alert_object(alert)
+
+	def remove_alert_by_id(self, alertID):
+		"""
+		Removes Alert from AlertCollection that matches
+		the passed-in id.
+		"""
+        del self.alerts[alertID]
+
+    def get_alerts_in_range(self, location, mileRange):
+    	"""
+    	Returns dictionary of Alerts keyed by alert id 
+    	that are within the passed-in mileRange of the
+    	passed-in location.
+    	"""
+    	alertsInRange = {}
+    	for alertID, alert in self.alerts:
+    		if alert.is_in_range(location, mileRange):
+    			alertsInRange[alert.get_id()] = alert
+    	return alertsInRange
