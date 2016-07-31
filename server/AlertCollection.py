@@ -6,7 +6,7 @@ Group: Tsunami Alerts
 This module contains class definitions for AlertCollection
 class to track collections of alerts.
 """
-import Alert
+from Alert import Alert
 
 class AlertCollection:
     """
@@ -30,7 +30,7 @@ class AlertCollection:
         it to AlertCollection.
         """
         alert = Alert(config)
-        self.add_alert_object(alert)
+        self.add_alert_by_object(alert)
 
     def remove_alert_by_id(self, alertID):
         """
