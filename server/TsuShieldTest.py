@@ -26,7 +26,7 @@ port = '8080'
 httpserver.serve(app, host, port)
 
 def test_download_alert_data_happy_path():
-	appTest = AlertServerApplication()
+	assert_not_equal(alerts, None)
 	
 	
 def test_alert_server_application_happy_path():
