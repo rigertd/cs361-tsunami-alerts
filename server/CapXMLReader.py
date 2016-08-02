@@ -9,6 +9,7 @@ a standardized format for use in the Tsu-Shield system.
 """
 from geopy.geocoders import Nominatim
 from xml.etree import ElementTree
+from xml.etree.ElementTree import ParseError
 from datetime import datetime
 from dateutil import tz
 from dateutil import parser
@@ -75,7 +76,11 @@ class CapXMLReader:
           locations: [ ( latitude #.##, longitude #.## ), ... ] }
         """
         raw_CapXML = re.sub(r'\s+xmlns="[^"]+"', '', raw_CapXML)
-        root = ElementTree.fromstring(raw_CapXML)
+        try:
+            root = ElementTree.fromstring(raw_CapXML)
+        except ParseError:
+            print "Invalid XML data"
+            return False
         
         if root is None:
             print "Invalid XML"

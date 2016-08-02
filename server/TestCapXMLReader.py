@@ -334,7 +334,98 @@ def test_parse_exercise_data():
     assert_equal(parser.get_alert_data(), None)
     parser = None
 
-def test_parse_invalid_data():
-    parser = CapXMLReader()
-    assert_false(parser.parse(r'<asdf>kjgkjsgd</asdf>'))
-    assert_equal(parser.get_alert_data(), None)
+class Test_parse_invalid_data(object):
+    @classmethod
+    def setup_class(self):
+        """
+        Setup code run before any tests are run
+        """
+        self.parser = CapXMLReader()
+
+    @classmethod
+    def teardown_class(self):
+        """
+        Teardown code run after all tests are run
+        """
+        self.parser = None
+
+    def test_invalid_xml(self):
+        assert_false(self.parser.parse(r'asdf'))
+        assert_equal(self.parser.get_alert_data(), None)
+
+    def test_parse_invalid_root(self):
+        with open(r'testdata/invalid_root.xml', 'r') as f:
+            data = f.read()
+        
+        assert_false(self.parser.parse(data))
+        assert_equal(self.parser.get_alert_data(), None)
+
+    def test_parse_missing_event(self):
+        with open(r'testdata/missing_event.xml', 'r') as f:
+            data = f.read()
+        
+        assert_false(self.parser.parse(data))
+        assert_equal(self.parser.get_alert_data(), None)
+
+    def test_parse_missing_eventCode(self):
+        with open(r'testdata/missing_eventCode.xml', 'r') as f:
+            data = f.read()
+        
+        assert_true(self.parser.parse(data))
+
+    def test_parse_missing_eventCodeValue(self):
+        with open(r'testdata/missing_eventCodeValue.xml', 'r') as f:
+            data = f.read()
+        
+        assert_true(self.parser.parse(data))
+
+    def test_parse_missing_expire(self):
+        with open(r'testdata/missing_expire.xml', 'r') as f:
+            data = f.read()
+        
+        assert_false(self.parser.parse(data))
+        assert_equal(self.parser.get_alert_data(), None)
+
+    def test_parse_missing_id(self):
+        with open(r'testdata/missing_id.xml', 'r') as f:
+            data = f.read()
+        
+        assert_false(self.parser.parse(data))
+        assert_equal(self.parser.get_alert_data(), None)
+
+    def test_parse_missing_info(self):
+        with open(r'testdata/missing_info.xml', 'r') as f:
+            data = f.read()
+        
+        assert_false(self.parser.parse(data))
+        assert_equal(self.parser.get_alert_data(), None)
+
+    def test_parse_missing_msgType(self):
+        with open(r'testdata/missing_msgType.xml', 'r') as f:
+            data = f.read()
+        
+        assert_false(self.parser.parse(data))
+        assert_equal(self.parser.get_alert_data(), None)
+
+    def test_parse_missing_onset(self):
+        with open(r'testdata/missing_onset.xml', 'r') as f:
+            data = f.read()
+        
+        assert_false(self.parser.parse(data))
+        assert_equal(self.parser.get_alert_data(), None)
+
+    def test_parse_missing_status(self):
+        with open(r'testdata/missing_status.xml', 'r') as f:
+            data = f.read()
+        
+        assert_false(self.parser.parse(data))
+        assert_equal(self.parser.get_alert_data(), None)
+
+    def test_parse_no_areas(self):
+        with open(r'testdata/no_areas.xml', 'r') as f:
+            data = f.read()
+        
+        assert_true(self.parser.parse(data))
+        assert_not_equal(self.parser.get_alert_data(), None)
+        assert_equal(len(self.parser.data['locations']), 0)
+
