@@ -74,7 +74,7 @@ def download_alert_data(reader):
     while True:
         #response = urllib2.urlopen('http://wcatwc.arh.noaa.gov/events/xml/PAAQCAP.xml')
         #alert = response.read()
-        with open(r'testdata/actual.xml', 'r') as f:
+        with open(r'testdata/actual_not_expired.xml', 'r') as f:
             alert = f.read()
 
         if reader.parse(alert):
