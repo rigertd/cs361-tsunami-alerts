@@ -7,6 +7,7 @@ This module contains class definitions for AlertCollection
 class to track collections of alerts.
 """
 from Alert import Alert
+from datetime import datetime
 
 class AlertCollection:
     """
@@ -50,5 +51,19 @@ class AlertCollection:
             if alert.is_in_range(location, mileRange):
                 alertsInRange.append(alert)
         return alertsInRange
+
+    def remove_expired_alerts(self):
+        """
+        Removes any Alerts from the AlertCollection that
+        have an expireDate prior to the time the function
+        is called.
+        """
+        nowDate = datetime.utcnow()
+        alertsToRemove = []
+        for alertID, alert in self.alerts.iteritems():
+            if alert.get_expireDate() < nowDate:
+                alertsToRemove.append(alertID)
+        for i in alertsToRemove:
+            self.remove_alert_by_id(i)
 
 
