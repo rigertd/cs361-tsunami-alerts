@@ -47,6 +47,7 @@ class AlertCollection:
         passed-in location.
         """
         alertsInRange = []
+        self.remove_expired_alerts()
         for alertID, alert in self.alerts.iteritems():
             if alert.is_in_range(location, mileRange):
                 alertsInRange.append(alert)
