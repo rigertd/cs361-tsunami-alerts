@@ -10,9 +10,21 @@ function hideAllAlerts() {
     hideAlerts();
 }
 
-
 document.addEventListener("DOMContentLoaded", function() {
 	hideAlerts();
+});
+
+$(document).ready(function () {
+    var update = function () {
+        $('#serializearray').text(
+            JSON.stringify($('form').serializeArray())
+        );
+        $('#serialize').text(
+            JSON.stringify($('form').serialize())
+        );
+    };
+    update();
+    $('form').change(update);
 });
 
 $(document).ready(function () {
@@ -46,3 +58,25 @@ $(document).ready(function () {
         document.body.style.backgroundColor = "black";
     });
 });
+
+document.addEventListener('DOMContentLoaded', bindButtons);
+
+function bindButtons() {
+    document.getElementById('sub').addEventListener('click', function (event) {
+        var req = new XMLHttpRequest();
+        var payload = { data: null };
+        payload.data = document.getElementById('lat').value + "&" + document.getElementById('long').value;
+        console.log(payload.data);
+        var url = "http://localhost:58639/index.html?" + payload.data;
+        req.open('GET', url, true);
+        req.addEventListener('load', function () {
+            if (req.status >= 200 && req.status < 400) {
+                alert("Latitude and Longtitude sent");
+            } else {
+                console.log("Error in network request: " + request.statusText);
+            }
+        });
+        req.send(JSON.stringify(payload));
+        event.preventDefault();
+    });
+}

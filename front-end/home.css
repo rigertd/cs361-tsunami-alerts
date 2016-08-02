@@ -73,6 +73,12 @@ p, ol {
     color: #fff;
 }
 
+#GetLoc {
+    display: block;
+    width: 300px;
+    margin-left: auto;
+    margin-right: auto;
+}
 
 
 
