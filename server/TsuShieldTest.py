@@ -27,6 +27,11 @@ httpserver.serve(app, host, port)
 
 def test_download_alert_data_happy_path():
     assert_not_equal(alerts, None)
+    assert_not_equal(alerts.alerts, None)
+
+def test_download_alert_data_failure():
+    assert_equal(alerts, None)
+    
 	
 	
 def test_alert_server_application_happy_path():
