@@ -8,6 +8,7 @@ class to track collections of alerts.
 """
 from Alert import Alert
 from datetime import datetime
+from dateutil import tz
 
 class AlertCollection:
     """
@@ -59,7 +60,7 @@ class AlertCollection:
         have an expireDate prior to the time the function
         is called.
         """
-        nowDate = datetime.utcnow()
+        nowDate = datetime.utcnow().replace(tzinfo=tz.tzutc())
         alertsToRemove = []
         for alertID, alert in self.alerts.iteritems():
             if alert.get_expireDate() < nowDate:
