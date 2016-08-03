@@ -15,16 +15,19 @@ from CapXMLReader import CapXMLReader
 from Alert import Alert
 from AlertCollection import AlertCollection
 import time
-from threading import Thread
+from threading import Thread, Lock
 import webapp2
 from paste import httpserver
 import json
+from argparse import ArgumentParser
 
 alerts = AlertCollection()
+mutex = Lock()
 
 class AlertServerApplication(webapp2.RequestHandler):
     def get(self):
         global alerts
+        global mutex
         latitude = self.request.get('latitude')
         longitude = self.request.get('longitude')
 
@@ -34,15 +37,16 @@ class AlertServerApplication(webapp2.RequestHandler):
         except ValueError:
             self.response.write("Invalid coordinates. Cannot complete request.")
             return
-			
+            
         if latitude > 90 or latitude < -90:
             self.response.write("Invalid coordinates. Cannot complete request.")
             return
-        else if longitude > 180 or longitude < -180:
+        elif longitude > 180 or longitude < -180:
             self.response.write("Invalid coordinates. Cannot complete request.")
             return
 
-        alertsInRange = alerts.get_alerts_in_range((latitude, longitude), 10.0)
+        with mutex:
+            alertsInRange = alerts.get_alerts_in_range((latitude, longitude), 10.0)
         if len(alertsInRange) == 0:
             jsonResponse = { 'activeAlert': False, 'distance': None }
             self.response.write(json.dumps(jsonResponse))
@@ -61,30 +65,51 @@ app = webapp2.WSGIApplication([('/', AlertServerApplication),], debug=True)
 
 
 def main():
-    reader = CapXMLReader()
-    thread = Thread(target=download_alert_data, args=(reader,))
+    args = parse_args()
+    thread = Thread(target=download_alert_data, args=(args.test,),)
     thread.daemon = True
     thread.start()
 
-    httpserver.serve(app, host='158.69.197.74', port='8080')    
+    time.sleep(1)
+    print "Press Ctrl-C to shutdown"
+    httpserver.serve(app, host=args.ip_addr, port=args.port, daemon_threads=True)    
     
 
-def download_alert_data(reader):
+def download_alert_data(isTest):
     global alerts
+    global mutex
+    reader = CapXMLReader()
     while True:
-        #response = urllib2.urlopen('http://wcatwc.arh.noaa.gov/events/xml/PAAQCAP.xml')
-        #alert = response.read()
-        with open(r'testdata/actual_not_expired.xml', 'r') as f:
-            alert = f.read()
+        if not isTest:
+            print "Downloading alert data from NOAA"
+            response = urllib2.urlopen('http://wcatwc.arh.noaa.gov/events/xml/PAAQCAP.xml')
+            alert = response.read()
+        else:
+            print "Opening test alert data"
+            with open(r'testdata/actual_not_expired.xml', 'r') as f:
+                alert = f.read()
 
         if reader.parse(alert):
-            print "getting alert data"
             alertConfig = reader.get_alert_data()
-            #with mutex:
-            print "adding data to container"
-            alerts.add_alert_by_config(alertConfig)
+            with mutex:
+                print "adding data to container"
+                alerts.add_alert_by_config(alertConfig)
 
         time.sleep(300)
+
+def parse_args():
+    """
+    Configures an ArgumentParser and uses it to parse the command line options.
+
+    Returns an object containing the argument data.
+    """
+    parser = ArgumentParser(description='TsuShield server application.')
+    parser.add_argument('ip_addr', help='The IP address of the server hosting the TsuShield API.', nargs='?', default='127.0.0.1')
+    parser.add_argument('port', help='The port number on which to host the TsuShield API.', nargs='?', default='8080')
+    parser.add_argument('-t', '--test', help='Use test data to simulate active tsunami alert', action='store_true')
+    args = parser.parse_args()
+
+    return args
 
 if __name__ == '__main__':
     main()

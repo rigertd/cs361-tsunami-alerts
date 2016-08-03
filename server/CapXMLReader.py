@@ -117,7 +117,7 @@ class CapXMLReader:
         
         event = info.find('event')
         if event is None or event.text != 'Tsunami':
-            print "Event type not found or not Tsunami"
+            print "No active tsunami alerts"
             self.reset()
             return False
         
