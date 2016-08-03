@@ -34,11 +34,11 @@ class AlertServerApplication(webapp2.RequestHandler):
         except ValueError:
             self.response.write("Invalid coordinates. Cannot complete request.")
             return
-			
+            
         if latitude > 90 or latitude < -90:
             self.response.write("Invalid coordinates. Cannot complete request.")
             return
-        else if longitude > 180 or longitude < -180:
+        elif longitude > 180 or longitude < -180:
             self.response.write("Invalid coordinates. Cannot complete request.")
             return
 
