@@ -66,7 +66,7 @@ def main():
     thread.daemon = True
     thread.start()
 
-    httpserver.serve(app, host='158.69.197.74', port='8080')    
+    httpserver.serve(app, host='158.69.197.74', port='8080', daemon_threads=True)    
     
 
 def download_alert_data(reader):
