@@ -75,19 +75,28 @@ def main():
     httpserver.serve(app, host=args.ip_addr, port=args.port, daemon_threads=True)    
     
 
+def check_for_alert_data(isTest):
+    global alerts
+    global mutex
+    reader = CapXMLReader()
+    alert = download_alert_data(isTest)
+
+def do_download(isTest):
+    if not isTest:
+	    print "Downloading alert data from NOAA"
+        response = urllib2.urlopen('http://wcatwc.arh.noaa.gov/events/xml/PAAQCAP.xml')
+        return response.read()
+    else:
+        print "Opening test alert data"
+        with open(r'testdata/actual_not_expired.xml', 'r') as f:
+            return f.read()
+
 def download_alert_data(isTest):
     global alerts
     global mutex
     reader = CapXMLReader()
     while True:
-        if not isTest:
-            print "Downloading alert data from NOAA"
-            response = urllib2.urlopen('http://wcatwc.arh.noaa.gov/events/xml/PAAQCAP.xml')
-            alert = response.read()
-        else:
-            print "Opening test alert data"
-            with open(r'testdata/actual_not_expired.xml', 'r') as f:
-                alert = f.read()
+        alert = do_download(isTest)
 
         if reader.parse(alert):
             alertConfig = reader.get_alert_data()
