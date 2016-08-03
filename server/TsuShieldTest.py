@@ -17,14 +17,6 @@ from nose.tools import raises
 from datetime import datetime
 from dateutil.parser import parse
 
-def test_download_alert_data():
-    assert_not_equal(alert, None)
-
-app = webapp2.WSGIApplication([('/', AlertServerApplication),], debug=True)
-host = '158.69.197.74'
-port = '8080'
-httpserver.serve(app, host, port)
-
 def do_download_happy_path():
     alert = do_download(False)
     assert_not_equal(alert, None)
