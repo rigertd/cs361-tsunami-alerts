@@ -37,7 +37,7 @@ class AlertServerApplication(webapp2.RequestHandler):
         except ValueError:
             self.response.write("Invalid coordinates. Cannot complete request.")
             return
-            
+
         if latitude > 90 or latitude < -90:
             self.response.write("Invalid coordinates. Cannot complete request.")
             return
@@ -72,8 +72,8 @@ def main():
 
     time.sleep(1)
     print "Press Ctrl-C to shutdown"
-    httpserver.serve(app, host=args.ip_addr, port=args.port, daemon_threads=True)    
-    
+    httpserver.serve(app, host=args.ip_addr, port=args.port, daemon_threads=True)
+
 
 def check_for_alert_data(isTest):
     global alerts
@@ -83,7 +83,7 @@ def check_for_alert_data(isTest):
 
 def do_download(isTest):
     if not isTest:
-	    print "Downloading alert data from NOAA"
+        print "Downloading alert data from NOAA"
         response = urllib2.urlopen('http://wcatwc.arh.noaa.gov/events/xml/PAAQCAP.xml')
         return response.read()
     else:
