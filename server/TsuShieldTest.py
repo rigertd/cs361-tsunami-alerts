@@ -34,7 +34,12 @@ def test_alert_server_application_happy_path():
     
     response = urllib2.urlopen(url)
     alert = response.read()
+    jsonReply = json.loads(alert)
     assert_not_equal(alert, None)
+    assert_not_equal(jsonReply, None)
+    assert_not_equal(jsonReply['activeAlert'], None)
+    if jsonReply['activeAlert']:
+        assert_not_equal(jsonReply['distance'], None)
 	
 def test_alert_server_application_invalid_type():
     url = 'http://vps54981.vps.ovh.ca:8080/?latitude=foo&longitude=bar'
