@@ -9,6 +9,7 @@ class to track individual alerts.
 from datetime import datetime
 from dateutil.parser import parse
 from geopy.distance import great_circle
+from dateutil.tz import tzutc
 
 class Alert:
     """
@@ -56,13 +57,13 @@ class Alert:
         """
         Updates Alert onsetDate to passed-in value
         """
-        self.onsetDate = onsetDate
+        self.onsetDate = parse(onsetDate).astimezone(tzutc())
 
     def update_expireDate(self, expireDate):
         """
         Updates Alert expireDate to passed-in value
         """
-        self.expireDate = expireDate
+        self.expireDate = parse(expireDate).astimezone(tzutc())
 
     def update_locations(self, locations):
         """
