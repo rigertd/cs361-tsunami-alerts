@@ -44,14 +44,18 @@ class Alert:
         """
         Adds passed-in location to the Alert location list
         """
-        self.locations.append(location)
+        if location[0] <= 90 and location[0] >= -90 and location[1] <= 180 and location[1] >= -180:
+            self.locations.append(location)
 
     def remove_location(self, location):    
         """
         Removes passed-in location tuple from the Alert
         location list
         """
-        self.locations.remove(location)
+        try:
+            self.locations.remove(location)
+        except ValueError:
+            pass
 
     def update_onsetDate(self, onsetDate):
         """
@@ -79,8 +83,8 @@ class Alert:
         the Alert to passed-in values
         """
         if self.id == config['id']:
-            self.update_onsetDate(config['onsetDate'])
-            self.update_expireDate(config['expireDate'])
+            self.onsetDate = config['onsetDate']
+            self.expireDate = config['expireDate']
             self.update_locations(config['locations'])
             self.isUpdate = config['isUpdate']
 
