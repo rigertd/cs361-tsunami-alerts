@@ -57,3 +57,26 @@ def test_remove_alert_happy_path():
     assert_equal(len(alertCollection.alerts), 1)
     alertCollection.remove_alert_by_id('foo')
     assert_equal(len(alertCollection.alerts), 0)
+
+def test_remove_expired_happy_path():
+    alertCollection = AlertCollection()
+    alert = Alert({ 'id': 'foo',
+                    'onsetDate': datetime(1997, 7, 16, 19, 20, tzinfo=tzoffset(None, 3600)),
+                    'expireDate': datetime(2016, 10, 16, 19, 20, tzinfo=tzoffset(None, 3600)),
+                    'isUpdate': False,
+                    'isCancel': False,
+                    'locations':[] 
+                  })
+    alertCollection.add_alert_by_object(alert)
+    alert2 = Alert({ 'id': 'bar',
+                    'onsetDate': datetime(1997, 7, 16, 19, 20, tzinfo=tzoffset(None, 3600)),
+                    'expireDate': datetime(1997, 7, 16, 19, 20, tzinfo=tzoffset(None, 3600)),
+                    'isUpdate': False,
+                    'isCancel': False,
+                    'locations':[] 
+                  })
+    alertCollection.add_alert_by_object(alert2)
+    assert_equal(len(alertCollection.alerts), 2)
+    alertCollection.remove_expired_alerts()
+    assert_equal(len(alertCollection.alerts), 1)
+

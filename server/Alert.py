@@ -23,6 +23,8 @@ class Alert:
                  latitude and longitude
     isUpdate -- boolean indicating if the alert is an
                 update to an existing alert
+    isCancel -- boolean indicating if the alert is a
+                cancelation notice
     """
     def __init__(self, config):
         self.id = config['id']
@@ -30,6 +32,7 @@ class Alert:
         self.expireDate = config['expireDate']
         self.locations = []
         self.isUpdate = config['isUpdate']
+        self.isCancel = config['isCancel']
         self.add_all_locations(config['locations'])
 
     def add_all_locations(self, locations):
@@ -103,6 +106,9 @@ class Alert:
     def get_isUpdate(self):
         return self.isUpdate
 
+    def get_isCancel(self):
+        return self.isCancel
+
     def is_in_range(self, pointLocation, mileRange):
         """
         Checks all Alert locations for range from
@@ -110,9 +116,10 @@ class Alert:
         mileRange of passed-in location, returns true.
         """
         for location in self.locations:
-            if great_circle(location, pointLocation).miles <= mileRange:
-                print(great_circle(location, pointLocation).miles)
-                return True
+            if not self.isCancel:
+                if great_circle(location, pointLocation).miles <= mileRange:
+                    print(great_circle(location, pointLocation).miles)
+                    return True
         print(great_circle(location, pointLocation).miles)
         return False
 

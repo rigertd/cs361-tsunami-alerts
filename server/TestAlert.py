@@ -329,6 +329,7 @@ class Test_is_in_range_and_distance(object):
         """
         del self.alert.locations[:]
         self.alert.add_all_locations([(00.00, 00.00), (77.77, 77.77)])
+        self.alert.isCancel = False
 
     def test_is_in_range_happy_path(self):
         assert_true(self.alert.is_in_range((00.00, 00.00), 1.0))
@@ -340,6 +341,11 @@ class Test_is_in_range_and_distance(object):
 
     def test_is_in_range_negative_num(self):
         assert_false(self.alert.is_in_range((00.00, 00.00), -10.0))
+
+    def test_is_in_range_canceled_alert(self):
+        assert_true(self.alert.is_in_range(00.00, 00.00), 1.0)
+        self.alert.isCancel = True
+        assert_false(self.alert.is_in_range(00.00, 00.00), 1.0)
 
     def test_distance_happy_path(self):
         assert_almost_equal(self.alert.distance((00.00, 00.00)), 0)
