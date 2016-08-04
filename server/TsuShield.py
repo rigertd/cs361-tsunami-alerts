@@ -31,6 +31,8 @@ class AlertServerApplication(webapp2.RequestHandler):
         latitude = self.request.get('latitude')
         longitude = self.request.get('longitude')
 
+        self.response.headers.add_header('Access-Control-Allow-Origin', '*')
+
         try:
             latitude = float(latitude)
             longitude = float(longitude)
