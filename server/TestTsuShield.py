@@ -53,33 +53,33 @@ class TestTsuShield(object):
 
     def test_alert_server_application_happy_path(self):
         url = 'http://127.0.0.1:8080/?latitude=54.266701&longitude=-133.066696'
-        
+
         response = urllib2.urlopen(url)
         assert_equal(response.getcode(), 200)
         alert = response.read()
         assert_not_equal(alert, None)
-        
+
     def test_alert_server_application_invalid_type(self):
         url = 'http://127.0.0.1:8080/?latitude=foo&longitude=bar'
-        
+
         response = urllib2.urlopen(url)
         alert = response.read()
         assert_equal(response.getcode(), 200)
         assert_not_equal(alert, None)
         assert_equal(alert,"Invalid coordinates. Cannot complete request.")
-        
+
     def test_alert_server_application_invalid_latitude(self):
         url = 'http://127.0.0.1:8080/?latitude=91&longitude=1'
-        
+
         response = urllib2.urlopen(url)
         alert = response.read()
         assert_equal(response.getcode(), 200)
         assert_not_equal(alert, None)
         assert_equal(alert,"Invalid coordinates. Cannot complete request.")
-        
+
     def test_alert_server_application_invalid_longitude(self):
         url = 'http://127.0.0.1:8080/?latitude=1&longitude=-181'
-        
+
         response = urllib2.urlopen(url)
         alert = response.read()
         assert_equal(response.getcode(), 200)
