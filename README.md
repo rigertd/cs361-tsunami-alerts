@@ -13,17 +13,20 @@ a specified geolocation.
 **INSTALLATION REQUIREMENTS:**
 
 1. Super user/administrator permissions
+
 2. Python 2.7
 
 **ENVIRONMENT SETUP:**
 
 1. Navigate to the 'server' directory.
+
 2. Type 'sudo pip install -r requirements.txt' to install all dependencies.
 
 **SERVER USAGE INSTRUCTIONS:**
 
 1. Start the server with the following syntax:
-   ./TsuShield.py <server_ip_addr> <port_num> [-t]
+>  ./TsuShield.py <server_ip_addr> <port_num> [-t]
+
 2. To shut down the server, press Ctrl+C.
    This disconnects any connected clients and aborts all transfers.
 
@@ -43,5 +46,6 @@ a specified geolocation.
 **SERVER UNIT TESTS:**
 
 1. Navigate to the 'server' directory.
+
 2. Run the following command:
-   nosetests -v
+>  nosetests -v
