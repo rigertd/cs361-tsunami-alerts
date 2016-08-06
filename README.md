@@ -13,13 +13,11 @@ a specified geolocation.
 **INSTALLATION REQUIREMENTS:**
 
 1. Super user/administrator permissions
-
 2. Python 2.7
 
 **ENVIRONMENT SETUP:**
 
 1. Navigate to the `server` directory.
-
 2. Type `sudo pip install -r requirements.txt` to install all dependencies.
 
 **SERVER USAGE INSTRUCTIONS:**
@@ -46,6 +44,5 @@ a specified geolocation.
 **SERVER UNIT TESTS:**
 
 1. Navigate to the `server` directory.
-
 2. Run the following command:
 >  nosetests -v
