@@ -25,9 +25,8 @@ a specified geolocation.
 **SERVER USAGE INSTRUCTIONS:**
 
 1. Start the server with the following syntax:
-```
-   ./TsuShield.py [server_ip_addr] [server_port_num] [-t]
-```
+>  ./TsuShield.py [server_ip_addr] [server_port_num] [-t]
+
 2. To shut down the server, press Ctrl+C.
    This disconnects any connected clients and aborts all transfers.
 
@@ -48,6 +47,4 @@ a specified geolocation.
 
 1. Navigate to the `server` directory.
 2. Run the following command:
-```
-   nosetests -v
-```
+>  nosetests -v
