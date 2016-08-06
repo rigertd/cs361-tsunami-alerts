@@ -2,6 +2,10 @@
     background-color: #BDDE8D;
 }
 
+#top {
+    margin-bottom: 30px;
+}
+
 #logo {
     margin: auto;
     padding-left: 300px;

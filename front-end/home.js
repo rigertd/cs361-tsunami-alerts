@@ -29,54 +29,64 @@ $(document).ready(function () {
 
 $(document).ready(function () {
     $('#changeGAlert').click(function () {
-        hideAlerts();
-        document.getElementById("currentAlertGreen").style.display = "block";
-        document.body.style.backgroundColor = "#BDDE8D";
+        changePage("currentAlertGreen", "#BDDE8D")
     });
 
     $('#changeYAlert').click(function () {
-        hideAllAlerts();
-        document.getElementById("currentAlertYellow").style.display = "block";
-        document.body.style.backgroundColor = "#ffffa5";
+        changePage("currentAlertYellow", "#ffffa5")
     });
 
     $('#changeOAlert').click(function () {
-        hideAllAlerts();
-        document.getElementById("currentAlertOrange").style.display = "block";
-        document.body.style.backgroundColor = "#e59544";
+        changePage("currentAlertOrange", "#e59544")
     });
 
     $('#changeRAlert').click(function () {
-        hideAllAlerts();
-        document.getElementById("currentAlertRed").style.display = "block";
-        document.body.style.backgroundColor = "#990000";
+        changePage("currentAlertRed", "#990000");
     });
 
     $('#changeBAlert').click(function () {
-        hideAllAlerts();
-        document.getElementById("currentAlertBlack").style.display = "block";
-        document.body.style.backgroundColor = "black";
+        changePage("currentAlertBlack", "black")
     });
 });
+
+function changePage(elementId, backgroundColor) {
+    hideAllAlerts();
+    document.getElementById(elementId).style.display = "block";
+    document.body.style.backgroundColor = backgroundColor;
+}
+
+function alertUser(distance) {
+    if(distance < 10) {
+        changePage("currentAlertBlack", "black");
+    } else if(distance >= 10 && distance < 50) {
+        changePage("currentAlertRed", "#990000");
+    } else {
+        changePage("currentAlertGreen", "#BDDE8D");
+    }
+}
 
 document.addEventListener('DOMContentLoaded', bindButtons);
 
 function bindButtons() {
     document.getElementById('sub').addEventListener('click', function (event) {
         var req = new XMLHttpRequest();
-        var payload = { data: null };
-        payload.data = document.getElementById('lat').value + "&" + document.getElementById('long').value;
-        console.log(payload.data);
-        var url = "http://localhost:58639/index.html?" + payload.data;
+        var payload = { data: null };    
+        payload.data = "latitude=" + document.getElementById('lat').value + "&longitude=" + document.getElementById('long').value;
+        var url = "http://vps54981.vps.ovh.ca:8080/?" + payload.data;
+        console.log(url);
+
         req.open('GET', url, true);
         req.addEventListener('load', function () {
             if (req.status >= 200 && req.status < 400) {
-                alert("Latitude and Longtitude sent");
+                var response = JSON.parse(req.responseText);
+                if(response.activeAlert === true) {
+                    alertUser(response.distance);
+                }
             } else {
                 console.log("Error in network request: " + request.statusText);
             }
         });
-        req.send(JSON.stringify(payload));
+        req.send(null);
         event.preventDefault();
     });
 }

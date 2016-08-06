@@ -23,6 +23,8 @@ class Alert:
                  latitude and longitude
     isUpdate -- boolean indicating if the alert is an
                 update to an existing alert
+    isCancel -- boolean indicating if the alert is a
+                cancelation notice
     """
     def __init__(self, config):
         self.id = config['id']
@@ -30,6 +32,7 @@ class Alert:
         self.expireDate = config['expireDate']
         self.locations = []
         self.isUpdate = config['isUpdate']
+        self.isCancel = config['isCancel']
         self.add_all_locations(config['locations'])
 
     def add_all_locations(self, locations):
@@ -44,14 +47,18 @@ class Alert:
         """
         Adds passed-in location to the Alert location list
         """
-        self.locations.append(location)
+        if location[0] <= 90 and location[0] >= -90 and location[1] <= 180 and location[1] >= -180:
+            self.locations.append(location)
 
     def remove_location(self, location):    
         """
         Removes passed-in location tuple from the Alert
         location list
         """
-        self.locations.remove(location)
+        try:
+            self.locations.remove(location)
+        except ValueError:
+            pass
 
     def update_onsetDate(self, onsetDate):
         """
@@ -79,8 +86,8 @@ class Alert:
         the Alert to passed-in values
         """
         if self.id == config['id']:
-            self.update_onsetDate(config['onsetDate'])
-            self.update_expireDate(config['expireDate'])
+            self.onsetDate = config['onsetDate']
+            self.expireDate = config['expireDate']
             self.update_locations(config['locations'])
             self.isUpdate = config['isUpdate']
 
@@ -99,6 +106,9 @@ class Alert:
     def get_isUpdate(self):
         return self.isUpdate
 
+    def get_isCancel(self):
+        return self.isCancel
+
     def is_in_range(self, pointLocation, mileRange):
         """
         Checks all Alert locations for range from
@@ -106,9 +116,10 @@ class Alert:
         mileRange of passed-in location, returns true.
         """
         for location in self.locations:
-            if great_circle(location, pointLocation).miles <= mileRange:
-                print(great_circle(location, pointLocation).miles)
-                return True
+            if not self.isCancel:
+                if great_circle(location, pointLocation).miles <= mileRange:
+                    print(great_circle(location, pointLocation).miles)
+                    return True
         print(great_circle(location, pointLocation).miles)
         return False
 
