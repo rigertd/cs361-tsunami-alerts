@@ -46,5 +46,4 @@ a specified geolocation.
 **SERVER UNIT TESTS**
 
 1. Navigate to the `server` directory.
-2. Run the following command: 
->  nosetests -v
+2. Type `nosetests -v` to start the unit tests.
