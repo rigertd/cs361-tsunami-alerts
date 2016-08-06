@@ -12,18 +12,15 @@ This program provides a REST API that can be used to determine
 whether there is an active tsunami alert within 10 miles of
 a specified geolocation.
 
-**INSTALLATION REQUIREMENTS:**
-
+**INSTALLATION REQUIREMENTS**
 1. Super user/administrator permissions
 2. Python 2.7
 
-**ENVIRONMENT SETUP:**
-
+**ENVIRONMENT SETUP**
 1. Navigate to the `server` directory.
 2. Type `sudo pip install -r requirements.txt` to install all dependencies.
 
-**SERVER USAGE INSTRUCTIONS:**
-
+**SERVER USAGE INSTRUCTIONS**
 1. Start the server with the following syntax:
 >  ./TsuShield.py [server_ip_addr] [server_port_num] [-t]
 
@@ -43,8 +40,7 @@ a specified geolocation.
    You can use this instance if you do not have the permissions required
    to setup the Python environment and run a web server.
 
-**SERVER UNIT TESTS:**
-
+**SERVER UNIT TESTS**
 1. Navigate to the `server` directory.
-2. Run the following command:
+2. Run the following command: 
 >  nosetests -v
