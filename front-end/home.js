@@ -81,6 +81,8 @@ function bindButtons() {
                 var response = JSON.parse(req.responseText);
                 if(response.activeAlert === true) {
                     alertUser(response.distance);
+                } else {
+                    changePage("currentAlertGreen", "#BDDE8D");
                 }
             } else {
                 console.log("Error in network request: " + request.statusText);
