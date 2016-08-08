@@ -47,3 +47,12 @@ a specified geolocation.
 
 1. Navigate to the `server` directory.
 2. Type `nosetests -v` to start the unit tests.
+
+**Using the Front End**
+1. Plop it into your favorite directory
+2. Open index.html
+3. Click (on Chrome) F12, Ctrl+Shift+M to get the proper responsive web page, as it would appear on a mobile device.
+4. Special Note: inputting 54.266701 as the latitude and -133.066696 as the longitude will show an example of a true alert response
+5. inputs must be in float form with a decimal point and trailing digit.
+6. A hosted version can be reached at: http://web.engr.oregonstate.edu/~bergmkyl/cs361-tsunami-alerts/front-end/
+
