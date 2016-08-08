@@ -2,7 +2,7 @@
 Group:       Tsunami Alerts (14)
 Date:        8/6/2016
 Class:       CS361 Summer 2016
-Description: Setup Instructions for Project B server
+Description: Setup Instructions for Project B
 ```
 
 =================================================
@@ -48,7 +48,8 @@ a specified geolocation.
 1. Navigate to the `server` directory.
 2. Type `nosetests -v` to start the unit tests.
 
-**Using the Front End**
+**FRONT END USAGE INSTRUCTIONS**
+
 1. Plop it into your favorite directory
 2. Open index.html
 3. Click (on Chrome) F12, Ctrl+Shift+M to get the proper responsive web page, as it would appear on a mobile device.
